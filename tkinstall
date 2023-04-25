@@ -5,11 +5,8 @@ export NC='\033[0m' # No Color
 
 apt update
 apt install neofetch -y
-printf "${RED}Neofetch Install Complete...${NC}" \
 apt install neovim -y
-printf "${RED}Neovim Install Complete...${NC}" \
 apt install ncdu -y
-printf "${RED}NCDU Install Complete...${NC}" \
 
 apt install docker.io -y
 apt install iperf3 -y
@@ -17,7 +14,7 @@ apt install speedtest-cli -y
 systemctl enable docker
 systemctl start docker
 
-printf "${RED}Docker Install Complete...${NC}" \
+printf "${RED}Docker Install Complete...${NC}"
 
 docker run -d \
 --name="portainer" \
@@ -28,7 +25,7 @@ docker run -d \
 -v portainer_data:/data \
 portainer/portainer-ce:latest
 
-printf "${RED}Portainer Install Complete...${NC}" \ 
+printf "${RED}Portainer Install Complete...${NC}"
 
 docker run -d \
 --name="pihole" \
@@ -42,5 +39,5 @@ docker run -d \
 -v /docker/pihole/dns:/etc/dnsmasq.d \
 pihole/pihole:latest
 
-printf "${RED}Pihole Install Complete...${NC}" \
-printf "${GREEN}INSTALLTION COMPLETE${NC}" \
+printf "${RED}Pihole Install Complete...${NC}"
+printf "${GREEN}INSTALLTION COMPLETE${NC}"

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+apt update
+apt install docker.io -y
+systemctl enable docker
+systemctl start docker
+systemctl status docker
+
+docker run -d \
+--name="portainer" \
+--restart on-failure \
+-p 9000:9000 \
+-p 8000:8000 \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v portainer_data:/data \
+portainer/portainer-ce:latest
+
+docker run -d \
+--name="pihole" \
+--restart on-failure \
+-p 53:53/tcp \
+-p 53:53/udp \
+-p 67:67/udp \
+-p 1010:80/tcp \
+-p 4443:443/tcp \
+-v /docker/pihole/config:/etc/pihole \
+-v /docker/pihole/dns:/etc/dnsmasq.d \
+pihole/pihole:latest

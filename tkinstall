@@ -1,16 +1,23 @@
 #!/bin/bash
+export GREEN='\033[0;32m'
+export RED='\033[0;31m'
+export NC='\033[0m' # No Color
 
 apt update
 apt install neofetch -y
+printf "${RED}Neofetch Install Complete..."
 apt install neovim -y
+printf "${RED}Neovim Install Complete..."
 apt install ncdu -y
+printf "${RED}NCDU Install Complete..."
+
 apt install docker.io -y
 apt install iperf3 -y
 apt install speedtest-cli -y
 systemctl enable docker
 systemctl start docker
 
-echo "Docker Install Complete..."
+printf "${RED}Docker Install Complete..."
 
 docker run -d \
 --name="portainer" \
@@ -21,7 +28,7 @@ docker run -d \
 -v portainer_data:/data \
 portainer/portainer-ce:latest
 
-echo "Portainer Install Complete..."
+printf "${RED}Portainer Install Complete..."
 
 docker run -d \
 --name="pihole" \
@@ -35,5 +42,5 @@ docker run -d \
 -v /docker/pihole/dns:/etc/dnsmasq.d \
 pihole/pihole:latest
 
-echo "Pihole Install Complete..."
+printf "${RED}Pihole Install Complete..."
 echo "All installs complete"

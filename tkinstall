@@ -1,10 +1,16 @@
 #!/bin/bash
 
 apt update
+apt install neofetch -y
+apt install neovim -y
+apt install ncdu -y
 apt install docker.io -y
+apt install iperf3 -y
+apt install speedtest-cli -y
 systemctl enable docker
 systemctl start docker
-systemctl status docker
+
+echo "Docker Install Complete..."
 
 docker run -d \
 --name="portainer" \
@@ -14,6 +20,8 @@ docker run -d \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v portainer_data:/data \
 portainer/portainer-ce:latest
+
+echo "Portainer Install Complete..."
 
 docker run -d \
 --name="pihole" \
@@ -26,3 +34,6 @@ docker run -d \
 -v /docker/pihole/config:/etc/pihole \
 -v /docker/pihole/dns:/etc/dnsmasq.d \
 pihole/pihole:latest
+
+echo "Pihole Install Complete..."
+echo "All installs complete"
